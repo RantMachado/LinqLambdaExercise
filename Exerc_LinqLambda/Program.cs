@@ -32,17 +32,19 @@ namespace Exerc_LinqLambda
 
                 var result1 = listEmployee.Where(p => p.Salary > value).OrderBy(p => p.Email).ThenBy(p => p.Name).Select(p => p.Email);
 
+                Console.WriteLine("Email of people whose salary is more than: " + value + "\n");
+
                 foreach (var r1 in result1)
                 {
                     Console.WriteLine(r1);
                 }
+                
+                Console.Write("\nInsert one character: ");
+                char ch = char.Parse(Console.ReadLine().ToUpper());
 
-                Console.WriteLine("\nEmail of people whose salary is more than " + value + "\n");
-
-                var result2 = listEmployee.Where(p => p.Name[0] == 'R').Select(p => p.Salary).DefaultIfEmpty(0.0).Average();
+                var result2 = listEmployee.Where(p => p.Name[0] == ch).Select(p => p.Salary).DefaultIfEmpty(0.0).Average();
 
                 Console.WriteLine(result2.ToString("f2", CultureInfo.InvariantCulture));
-
             }
             catch (Exception e)
             {
